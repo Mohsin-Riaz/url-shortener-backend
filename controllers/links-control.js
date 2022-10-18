@@ -1,6 +1,10 @@
 const Link = require('../models/links.model')
 
-createLink = async (req, res) => {
+const ignore = async (req, res) => {
+    return res.status(204)
+}
+
+const createLink = async (req, res) => {
     const { shortURL, longURL, qrCode } = req.body
 
     if (!req.body) {
@@ -33,7 +37,7 @@ createLink = async (req, res) => {
     }
 }
 
-deleteLink = async (req, res) => {
+const deleteLink = async (req, res) => {
     const { shortURL } = req.body
 
     if (!shortURL) {
@@ -52,7 +56,7 @@ deleteLink = async (req, res) => {
     }
 }
 
-getLinkById = async (req, res) => {
+const getLinkById = async (req, res) => {
     const { shortURL } = req.params
     if (!shortURL) {
         return res.status(404).json({
@@ -72,7 +76,7 @@ getLinkById = async (req, res) => {
     return res.redirect(newLink.longURL)
 }
 
-getLinks = async (req, res) => {
+const getLinks = async (req, res) => {
     const allLinks = await Link.find({}).lean().exec()
 
     if (!allLinks?.length) {
@@ -89,4 +93,5 @@ module.exports = {
     deleteLink,
     getLinks,
     getLinkById,
+    ignore,
 }

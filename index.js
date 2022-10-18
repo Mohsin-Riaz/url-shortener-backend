@@ -11,16 +11,16 @@ app.use(cors())
 app.use(express.json())
 
 connectDB()
+app.use('/', require('./routes/root'))
+app.use('/', express.static(path.join(__dirname, 'public')))
 
-// app.use('/', express.static(path.join(__dirname, 'public')))
+const linksRouter = require('./routes/links-router.js')
+
+app.use('/v/', linksRouter)
 
 mongoose.connection.once('open', () => {
     console.log('MongoDB database connection established successfully')
 })
-
-const linksRouter = require('./routes/links-router.js')
-
-app.use('/', linksRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)

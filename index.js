@@ -11,8 +11,8 @@ app.use(cors())
 app.use(express.json())
 
 connectDB()
-app.use('/', require('./routes/root'))
-app.use('/', express.static(path.join(__dirname, 'public')))
+// app.use('/', require('./routes/root'))
+// app.use('/', express.static(path.join(__dirname, 'public')))
 
 const linksRouter = require('./routes/links-router.js')
 

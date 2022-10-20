@@ -1,9 +1,5 @@
 const Link = require('../models/links.model')
 
-const ignore = async (req, res) => {
-    return res.status(204).end()
-}
-
 const createLink = async (req, res) => {
     const { shortURL, longURL, qrCode } = req.body
 
@@ -93,5 +89,4 @@ module.exports = {
     deleteLink,
     getLinks,
     getLinkById,
-    ignore,
 }

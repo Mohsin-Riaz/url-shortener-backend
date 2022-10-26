@@ -73,7 +73,7 @@ const getLinkById = async (req, res) => {
 }
 
 const getLinks = async (req, res) => {
-    const allLinks = await Link.find().sort({ createdAt: -1 }).lean().exec()
+    const allLinks = await Link.find().lean().exec()
 
     if (!allLinks?.length) {
         return res
